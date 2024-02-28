@@ -22,7 +22,7 @@
 #include <string>
 #include <sstream>
 #include <string.h>
-#include "png.h"
+#include "libpng/png.h"
 #include "guetzli/jpeg_data.h"
 #include "guetzli/jpeg_data_reader.h"
 #include "guetzli/processor.h"
@@ -67,7 +67,7 @@ bool ReadPNG(const std::string& data, int* xsize, int* ysize,
   std::istringstream memstream(data, std::ios::in | std::ios::binary);
   png_set_read_fn(png_ptr, static_cast<void*>(&memstream), [](png_structp png_ptr, png_bytep outBytes, png_size_t byteCountToRead) {
     std::istringstream& memstream = *static_cast<std::istringstream*>(png_get_io_ptr(png_ptr));
-    
+
     memstream.read(reinterpret_cast<char*>(outBytes), byteCountToRead);
 
     if (memstream.eof()) png_error(png_ptr, "unexpected end of data");

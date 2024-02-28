@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-#include "guetzli/jpeg_data_writer.h"
+#include "jpeg_data_writer.h"
 
 #include <assert.h>
 #include <cstdlib>
 #include <string.h>
 
-#include "guetzli/entropy_encode.h"
-#include "guetzli/fast_log.h"
-#include "guetzli/jpeg_bit_writer.h"
+#include "entropy_encode.h"
+#include "fast_log.h"
+#include "jpeg_bit_writer.h"
 
 namespace guetzli {
 

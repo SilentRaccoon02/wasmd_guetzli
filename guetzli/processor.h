@@ -20,9 +20,9 @@
 #include <string>
 #include <vector>
 
-#include "guetzli/comparator.h"
-#include "guetzli/jpeg_data.h"
-#include "guetzli/stats.h"
+#include "comparator.h"
+#include "jpeg_data.h"
+#include "stats.h"
 
 namespace guetzli {
 
