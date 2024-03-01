@@ -229,7 +229,11 @@ void Usage() {
 
 }  // namespace
 
-int main(int argc, char** argv) {
+extern "C" {
+int run(int argc, char** argv);
+}
+
+int run(int argc, char** argv) {
   std::set_terminate(TerminateHandler);
 
   int verbose = 0;

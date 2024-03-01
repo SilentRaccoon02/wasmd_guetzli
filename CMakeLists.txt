@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-
-project(wasmd_guetzli LANGUAGES CXX)
+project(module LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -58,5 +57,22 @@ guetzli/stats.h
 add_executable(${PROJECT_NAME} ${sources})
 
 add_subdirectory(libpng)
-
 target_link_libraries(${PROJECT_NAME} png_static)
+
+target_link_options(${PROJECT_NAME} PUBLIC
+    "SHELL:
+    -sENVIRONMENT='web'
+    -sEXPORTED_FUNCTIONS=\"['_malloc', '_free', '_run']\"
+    -sEXPORTED_RUNTIME_METHODS=\"['lengthBytesUTF8', 'stringToUTF8', 'setValue', 'cwrap', 'FS']\"
+    -sALLOW_MEMORY_GROWTH
+    -sEXPORT_ES6=1
+    -sMODULARIZE=1")
+
+set(web_path "../../wasmd_web/src/wasm/")
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.js" "${web_path}${PROJECT_NAME}.js"
+    COMMENT "Copy ${PROJECT_NAME}.js")
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.wasm" "${web_path}${PROJECT_NAME}.wasm"
+    COMMENT "Copy ${PROJECT_NAME}.wasm")
