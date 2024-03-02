@@ -55,7 +55,7 @@ set(DFA_XTRA ""
     CACHE FILEPATH "File containing extra configuration settings")
 
 # Allow the users to switch on/off various library build types.
-option(PNG_SHARED "Build libpng as a shared library" ON)
+option(PNG_SHARED "Build libpng as a shared library" OFF)
 option(PNG_STATIC "Build libpng as a static library" ON)
 if(APPLE)
   option(PNG_FRAMEWORK "Build libpng as a framework bundle" ON)
@@ -64,7 +64,7 @@ endif()
 # Allow the users to switch on/off the auxiliary build and test artifacts.
 # These artifacts are NOT part of libpng proper, and are subject to change
 # at any time.
-option(PNG_TESTS "Build the libpng tests" ON)
+option(PNG_TESTS "Build the libpng tests" OFF)
 
 # Same as above, but for the third-party tools.
 # Although these tools are targetted at development environments only,
@@ -72,7 +72,7 @@ option(PNG_TESTS "Build the libpng tests" ON)
 if (ANDROID OR IOS)
   option(PNG_TOOLS "Build the libpng tools" OFF)
 else()
-  option(PNG_TOOLS "Build the libpng tools" ON)
+  option(PNG_TOOLS "Build the libpng tools" OFF)
 endif()
 
 # Maintain backwards compatibility with the deprecated option PNG_EXECUTABLES.
