@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
-project(module LANGUAGES CXX)
+project(module LANGUAGES C CXX)
 
+set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(sources
@@ -65,6 +67,7 @@ target_link_options(${PROJECT_NAME} PUBLIC
     -sEXPORTED_FUNCTIONS=\"['_malloc', '_free', '_run']\"
     -sEXPORTED_RUNTIME_METHODS=\"['lengthBytesUTF8', 'stringToUTF8', 'setValue', 'cwrap', 'FS']\"
     -sALLOW_MEMORY_GROWTH
+    -sMAXIMUM_MEMORY=4GB
     -sEXPORT_ES6=1
     -sMODULARIZE=1")
 
