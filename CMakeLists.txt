@@ -69,7 +69,8 @@ target_link_options(${PROJECT_NAME} PUBLIC
     -sALLOW_MEMORY_GROWTH
     -sMAXIMUM_MEMORY=4GB
     -sEXPORT_ES6=1
-    -sMODULARIZE=1")
+    -sMODULARIZE=1
+    --pre-js ../pre.js")
 
 set(web_path "../../wasmd_web/src/wasm/")
 
